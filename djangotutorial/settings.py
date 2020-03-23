@@ -130,12 +130,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_CLOUDFRONT_DOMAIN')
+AWS_S3_CUSTOM_DOMAIN = 'dg-demo-static.s3.amazonaws.com'
+AWS_CLOUDFRONT_DOMAIN = os.getenv('AWS_CLOUDFRONT_DOMAIN')
 
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-STATIC_HOST = 'https://' + AWS_S3_CUSTOM_DOMAIN
-STATIC_URL = STATIC_HOST + '/static/'
+# STATIC_HOST = 'https://' + AWS_CLOUDFRONT_DOMAIN
+# STATIC_URL = STATIC_HOST + '/static/'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
