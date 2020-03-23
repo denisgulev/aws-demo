@@ -124,7 +124,7 @@ USE_TZ = True
 
 # STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # AWS
 
@@ -135,7 +135,7 @@ AWS_CLOUDFRONT_DOMAIN = os.getenv('AWS_CLOUDFRONT_DOMAIN')
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-STATIC_HOST = os.getenv('AWS_CLOUDFRONT_DOMAIN')
+STATIC_HOST = 'https://' + os.getenv('AWS_CLOUDFRONT_DOMAIN')
 STATIC_URL = STATIC_HOST + '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
