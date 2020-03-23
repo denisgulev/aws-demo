@@ -40,12 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
+    'pages.apps.PagesConfig',
     'storages',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,9 +128,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # AWS
 
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_S3_CUSTOM_DOMAIN = 'dg-demo-static.s3.amazonaws.com'
+AWS_S3_CUSTOM_DOMAIN = '%.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_CLOUDFRONT_DOMAIN = os.getenv('AWS_CLOUDFRONT_DOMAIN')
 
 AWS_S3_OBJECT_PARAMETERS = {
