@@ -1,3 +1,4 @@
+/frontend/static/frontend/main.js
 /node_modules/
 .idea/*
 *.pyc
@@ -9,4 +10,3 @@ db.sqlite3
 .idea
 .env
 staticfiles
-frontend/static/frontend/main.js
