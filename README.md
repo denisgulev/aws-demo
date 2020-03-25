@@ -38,7 +38,7 @@ No tests at the moment.
 
 ## Built With
 
-* Django - Reast Framework
+* Django - Rest Framework
 * Webpack
 * React
 * Redux
