@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 
 export class Alerts extends Component {
   static propTypes = {
-    error: PropTypes.object.isRequired
+    error: PropTypes.object.isRequired,
+    message: PropTypes.object.isRequired
   };
 
   componentDidUpdate(prevProps) {
-    const { error, alert } = this.props;
+    const { error, alert, message } = this.props;
     if (error !== prevProps.error) {
       if (error.msg.name) {
         alert.error(`Name: ${error.msg.name.join()}`);
@@ -21,6 +22,11 @@ export class Alerts extends Component {
         alert.error(`Message: ${error.msg.message.join()}`);
       }
     }
+
+    if (message !== prevProps.message) {
+      if (message.deleteLead) alert.success(message.deleteLead);
+      if (message.addLead) alert.success(message.addLead);
+    }
   }
 
   render() {
@@ -30,7 +36,8 @@ export class Alerts extends Component {
 
 const mapStateToProps = state => ({
   // state.errors -> errors is the reducer we want
-  error: state.errors
+  error: state.errors,
+  message: state.messages
 });
 
 export default connect(mapStateToProps)(withAlert()(Alerts));
