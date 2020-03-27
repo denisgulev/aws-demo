@@ -8,7 +8,20 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
+Python3
+
+PIP
+
+NPM
+
 All needed packages are listed in package.json and requirements.txt
+
+### Setup
+
+Run this to create DB tables:
+```
+python3 manage.py migrate
+```
 
 ### Installing
 

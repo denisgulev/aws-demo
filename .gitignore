@@ -1,4 +1,4 @@
-/frontend/static/frontend/main.js
+frontend/static/frontend/main.js
 /node_modules/
 .idea/*
 *.pyc
