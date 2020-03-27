@@ -14,7 +14,7 @@ import PrivateRoute from "./common/PrivateRoute";
 
 import { Provider } from "react-redux";
 import store from "../store";
-import { loadUsers } from "../actions/auth";
+import { loadUser } from "../actions/auth";
 
 // Alerts options
 const alertOptions = {
@@ -24,7 +24,7 @@ const alertOptions = {
 
 class App extends Component {
   componentDidMount() {
-    store.dispatch(loadUsers());
+    store.dispatch(loadUser());
   }
 
   render() {

@@ -1,10 +1,10 @@
 import axios from "axios";
 import { returnErrors } from "./messages";
 
-import { USER_LOADED, USER_LOADING, AUTH_ERROR } from "./types";
+import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS } from "./types";
 
 // CHECK THE TOKEN AND LOAD THE USER
-export const loadUsers = () => (dispatch, getState) => {
+export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({
     type: USER_LOADING
@@ -27,7 +27,7 @@ export const loadUsers = () => (dispatch, getState) => {
 
   // Make request
   axios
-    .get("/api/auth/users", config)
+    .get("/api/auth/user", config)
     .then(res => {
       dispatch({
         type: USER_LOADED,
@@ -38,6 +38,39 @@ export const loadUsers = () => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: AUTH_ERROR
+      });
+    });
+};
+
+// LOGIN USER
+export const login = (username, password) => dispatch => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  // Request body
+
+  const body = JSON.stringify({
+    username,
+    password
+  });
+
+  // Make request
+  axios
+    .post("/api/auth/login", body, config)
+    .then(res => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: LOGIN_FAIL
       });
     });
 };
